@@ -18,7 +18,6 @@ module Intro where
 -- chaos, tweag, tripshot
 
 -- TODO: administrivia - georgi look at README!
--- live for now
 -- ask about git knowledge - ?
 -- ask about bsc programs
 -- github repo - https://github.com/googleson78/fp-lab-2023-24
@@ -30,6 +29,16 @@ module Intro where
 --   (Typed) Functional Programming is
 --     - Defining Datatypes To Represent Problems
 --     - Defining Functions To Create New Data From Old
+
+-- data ImaLiGo = ImaGo Int | NqmaGo
+--
+-- data Animal
+--  = Cat Colour
+--  | Dog Breed
+--
+-- data Colour
+--
+-- data Breed
 
 --
 -- garbage collection
@@ -84,14 +93,32 @@ module Intro where
 -- function definition
 -- type declarations
 
+-- x :: Integer
+-- x :: Int
+-- x = 5
+
+isBiggerThan :: Int -> Int -> Bool
+isBiggerThan x y = x > y
+
+add42 :: Int -> Int
+add42 x = x + 42
+
 -- base types
 -- if
 -- operators
 -- holes
 
--- show HLS features:
+-- int x = 5;
+
+-- return 5;
+
+-- if () {
+-- } {
+--     }
 
 {-
+-- show HLS features:
+
 -- warnings
 fun1 :: Int -> Int
 fun1 x = 10 + 3
@@ -101,18 +128,24 @@ fun2 :: Int -> Int
 fun2 x = succ x
 
 -- type inference and hover
+fun3 :: Bool -> Char -> Char
 fun3 b c =
   if b
     then c
     else 'a'
 
 -- add type signature
-fun4 x y z = fun3 (fun2 (fun1 x) == y) z
+fun4 :: Int -> Int -> Char -> Char
+fun4 x y z =
+  fun3
+    (fun2 (fun1 x) == y)
+    z
 
 -- evaluate code in >>>
 
--- >>> [1,2,3] ++ [4,5]
--- [1,2,3,4,5]
+-- >>> 5 + 15
+-- 20
+
 -- TODO: show
 -- if-then-else (is an expression)
 -- numeric operations
@@ -125,8 +158,15 @@ fun4 x y z = fun3 (fun2 (fun1 x) == y) z
 -- >>> fact 7
 -- 5040
 fact :: Int -> Int
-fact = undefined
+fact n =
+  if n == 0
+    then 1
+    else n * fact (n - 1)
 -}
+
+-- 3 + 4 * 7
+
+-- isBiggerThan add42 3 5
 
 {-
 -- EXAMPLES
