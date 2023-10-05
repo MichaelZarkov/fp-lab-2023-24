@@ -1,0 +1,39 @@
+people don't like teams
+
+teams code writing sucks
+
+ui is also slow
+
+->
+avoid teams
+
+
+
+have a notes database with explanations and examples of good code practices, e.g. newtyping, records, parse don't validate
+
+
+have feedback forms after every(?) exercise - try to make them concise and quick to answer
+
+
+think about how to fit in "best practices" sort of deal for projects
+
+
+
+when talking about monoids, mention thinking about "combining an entire list" (maybe even use fold/mconcat instead of (<>)??), mention they are equivalent?
+
+TODO: examples for findFirstAndLast
+
+
+homework idea:
+
+https://www.youtube.com/watch?v=DpXy041BIlA - implement different strategies for a game
+
+
+
+think of good example for State beforehand (example to show of how eventual state programs will look)
+think of how to demo State implementations
+explain more about State
+
+move bracketState after applicative tasks!
+
+add description for what (>>=) is supposed to do in State tasks
