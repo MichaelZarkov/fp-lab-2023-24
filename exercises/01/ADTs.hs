@@ -25,19 +25,62 @@ module ADTs where
 todo :: todo
 todo = todo
 
+{-
+-- >>> quadrth 11
+-- 14641
+-- >>> quadrth (-10)
+-- 7
+-- >>> quadrth 3
+-- 42
+quadrth :: Int -> Int
+quadrth x
+  | x > 10 = doublth (doublth x)
+  | x < 0 = 7
+  | otherwise = 42
+  where
+    doubleOfX = doublth x
+
+    doublth :: Int -> Int
+    doublth y = y * y
+-}
+
 -- | RPS - enum example
 -- show case here
 -- deriving Show
 data RPS
+  = Rock
+  | Paper
+  | Scissors
   deriving (Show)
+
+-- >>> whoBeats Rock
+-- Paper
+-- whoBeats :: RPS -> RPS
+-- whoBeats Rock = Paper
+-- whoBeats Paper = Scissors
+-- whoBeats Scissors = Rock
+
+--  case x of
+--    Rock -> Paper
+--    Paper -> Scissors
+--    Scissors -> Rock
 
 -- mention Bool
 
 -- |
 -- show ignore pattern match
 -- pattern evaluation order
+-- >>> beats Rock Rock
+-- False
+-- >>> beats Rock Scissors
+-- True
+-- >>> beats Scissors Paper
+-- True
 beats :: RPS -> RPS -> Bool
-beats = undefined
+beats Rock Scissors = True
+beats Scissors Paper = True
+beats Paper Rock = True
+beats _ _ = False
 
 -- |
 -- analogue with C structs or something
@@ -45,14 +88,35 @@ beats = undefined
 -- example point
 -- mention constructor name requirements, Mk convention
 -- tuples
-data Point
+data Point = MkPoint Integer Integer
   deriving (Show)
 
+-- (1, 1)
+oneOne :: Point
+oneOne = MkPoint 1 1
+
+-- >>> isInFirstQuadrant oneOne
+-- True
+-- >>> isInFirstQuadrant (MkPoint (-3) 5)
+-- False
 isInFirstQuadrant :: Point -> Bool
-isInFirstQuadrant = undefined
+isInFirstQuadrant (MkPoint x y) =
+  x > 0 && y > 0
+
+oneOne' :: (Integer, Integer)
+oneOne' = (1, 1)
+
+isInFirstQuadrant' :: (Integer, Integer) -> Bool
+isInFirstQuadrant' (x, y) = x > 0 && y > 0
+
+-- >>> addPoints (oneOne, oneOne)
+-- MkPoint 2 2
+addPoints :: (Point, Point) -> Point
+addPoints (MkPoint x1 y1, MkPoint x2 y2) =
+  MkPoint (x1 + x2) (y1 + y2)
 
 invert :: Point -> Point
-invert = undefined
+invert (MkPoint x y) = MkPoint (-x) (-y)
 
 -- | cats n dogs
 -- colours n breeds
@@ -60,25 +124,73 @@ invert = undefined
 -- example with animal matching
 -- showAnimal
 data Animal
+  = Cat Colour Double
+  | Dog Breed Integer
+  deriving (Show)
+
+isAnimalDumb :: Animal -> Bool
+isAnimalDumb (Cat Orange height) = height < 10
+isAnimalDumb (Dog Lab years) = years < 1
+isAnimalDumb _ = False
+
+data Breed = Husky | Lab
+  deriving (Show)
+
+data Colour = Orange | Black
   deriving (Show)
 
 -- | explain the encoding (peano)
+-- Peano
 data Nat
+  = Zero
+  | Succ Nat
   deriving (Show)
 
+-- Succ n
+-- 1 + n
+
+three :: Nat
+three = Succ (Succ (Succ Zero))
+
 -- implement
+-- >>> integerToNat 5
+-- Succ (Succ (Succ (Succ (Succ Zero))))
 integerToNat :: Integer -> Nat
-integerToNat = undefined
+integerToNat n =
+  if n == 0
+    then Zero
+    else Succ (integerToNat (n - 1))
 
 -- | implement
 -- evaluate manually?
+-- >>> natToInteger three
+-- 3
 natToInteger :: Nat -> Integer
-natToInteger = undefined
+natToInteger Zero = 0
+natToInteger (Succ n) = 1 + natToInteger n
+
+-- natToInteger (Succ (Succ (Succ Zero))) -- n == (Succ (Succ Zero))
+-- 1 + natToInteger (Succ (Succ Zero)) -- n == (Succ Zero)
+-- 1 + (1 + natToInteger (Succ Zero)) -- n = Zero
+-- 1 + (1 + (1 + natToInteger Zero))
+-- 1 + (1 + (1 + 0))
+-- 3
+--
 
 -- | implement
 -- evaluate manually?
+-- >>> addNat three three
 addNat :: Nat -> Nat -> Nat
-addNat = undefined
+addNat Zero m = m
+addNat (Succ n) m = Succ (addNat n m)
+
+-- addNat (Succ (Succ Zero)) three -- n == Succ Zero, m == three
+-- Succ (addNat (Succ Zero) three) -- n == Zero, m == three
+-- Succ (Succ (addNat Zero three)) -- m == three
+-- Succ (Succ (three))
+-- Succ (Succ (Succ (Succ (Succ Zero))))
+
+-- Succ (Succ (Succ (Succ (Succ Zero))))
 
 -- TASK
 -- define what the "next" throw you can do is in the "usual" ordering of RPS
