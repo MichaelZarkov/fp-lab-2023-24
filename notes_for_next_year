@@ -1,6 +1,7 @@
 # first exercise
 mention `rem` or `even` in first exercise fastPow
 add examples to isEven, isOdd
+Use undefined instead of holes for tasks, works better
 
 
 
