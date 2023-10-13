@@ -267,15 +267,25 @@ cardPower = undefined
 -- This data type exists mainly because it's useful as a tool to implement the 'fight' function.
 -- As such, it might be the case that your version of CardRelation is different from what I intended.
 --
+-- The way to think about this is as follows:
+-- Imagine you're in a situation where someone has played a card, and you've just played a card.
+-- You now need to decide which card would beat the other one.
+-- 'CardRelation' expresses the first thing you need to calculate in regards to the two cards
+-- *before* you can start checking their 'cardPower's, e.g. is one of them a trump and so on.
+--
 -- HINT:
 -- My intended solution has 4 constructors.
 data CardRelation
 
 -- | Calculate whether two cards have the same suit.
+-- The 'CardRelation' data type should support expressing "these two cards have the same suit" or
+-- "these two cards have different suits".
 sameSuit :: Card -> Card -> CardRelation
 sameSuit = undefined
 
 -- | Given a contract, calculate the relation between two cards.
+-- Since this is the main use of the 'CardRelation' data type, you should be using all of the
+-- constructors of 'CardRelation' here.
 relateCards :: Contract -> Card -> Card -> CardRelation
 relateCards = undefined
 
