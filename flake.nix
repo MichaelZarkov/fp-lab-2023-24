@@ -19,6 +19,7 @@
         hsPkgs.haskell-language-server
         hsPkgs.hlint
         pkgs.cabal-install
+        pkgs.hpack
       ];
     in {
       devShells.default = pkgs.mkShell {
