@@ -20,9 +20,9 @@
 Клонирайте вашето хранилище:
 ```sh
 # ssh клониране
-> git clone git@github.com:googleson78/fp-lab-2022-23-tasks-<вашият-github-потребител>.git
+> git clone git@github.com:googleson78/fp-lab-2023-24-tasks-<вашият-github-потребител>.git
 # HTTPS клониране
-> git clone https://github.com/googleson78/fp-lab-2022-23-tasks-<вашият-github-потребител>.git
+> git clone https://github.com/googleson78/fp-lab-2023-24-tasks-<вашият-github-потребител>.git
 ```
 
 ### tl;dr
