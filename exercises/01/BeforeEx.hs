@@ -201,22 +201,22 @@ winner = undefined
 -- TASK
 -- multiply two @Nat@s recursively, much like we did with Ints last time
 -- EXAMPLES
--- >>> multNat Zero (Suc (Suc (Suc Zero)))
+-- >>> multNat Zero (Succ (Succ (Succ Zero)))
 -- Zero
 -- >>> multNat (integerToNat 2) (integerToNat 3)
--- Suc (Suc (Suc (Suc (Suc (Suc Zero)))))
+-- Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
 multNat :: Nat -> Nat -> Nat
 multNat = undefined
 
 -- TASK
 -- calculate the larger of two @Nat@s recursively
 -- EXAMPLES
--- >>> maxNat (Suc Zero) Zero
--- Suc Zero
--- >>> maxNat (Suc (Suc Zero)) Zero
--- Suc (Suc Zero)
--- >>> maxNat (Suc (Suc Zero)) (Suc (Suc (Suc (Suc Zero))))
--- Suc (Suc (Suc (Suc Zero)))
+-- >>> maxNat (Succ Zero) Zero
+-- Succ Zero
+-- >>> maxNat (Succ (Succ Zero)) Zero
+-- Succ (Succ Zero)
+-- >>> maxNat (Succ (Succ Zero)) (Succ (Succ (Succ (Succ Zero))))
+-- Succ (Succ (Succ (Succ Zero)))
 maxNat :: Nat -> Nat -> Nat
 maxNat = undefined
 
@@ -227,11 +227,11 @@ maxNat = undefined
 -- with the constructors being L(ess)T(han), EQ(ual) G(reater)T(han)
 -- implement a comparison for @Nat@s, returning an @Ordering@
 -- EXAMPLES
--- >>> compareNat (Suc Zero) (Suc Zero)
+-- >>> compareNat (Succ Zero) (Succ Zero)
 -- EQ
--- >>> compareNat Zero (Suc Zero)
+-- >>> compareNat Zero (Succ Zero)
 -- LT
--- >>> compareNat (Suc Zero) Zero
+-- >>> compareNat (Succ Zero) Zero
 -- GT
 compareNat :: Nat -> Nat -> Ordering
 compareNat = undefined
