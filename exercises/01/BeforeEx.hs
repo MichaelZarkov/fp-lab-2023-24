@@ -209,20 +209,9 @@ multNat :: Nat -> Nat -> Nat
 multNat = undefined
 
 -- TASK
--- calculate the larger of two @Nat@s recursively
--- EXAMPLES
--- >>> maxNat (Succ Zero) Zero
--- Succ Zero
--- >>> maxNat (Succ (Succ Zero)) Zero
--- Succ (Succ Zero)
--- >>> maxNat (Succ (Succ Zero)) (Succ (Succ (Succ (Succ Zero))))
--- Succ (Succ (Succ (Succ Zero)))
-maxNat :: Nat -> Nat -> Nat
-maxNat = undefined
-
--- TASK
--- Ordering is a datatype that is made to mean "the result of a comparison" or "the ordering between two things"
--- it's defined like so:
+-- 'Ordering' is a datatype which is built into the standard library
+-- that is made to mean "the result of a comparison" or "the ordering between two things".
+-- It's defined like so:
 -- @data Ordering = LT | EQ | GT@
 -- with the constructors being L(ess)T(han), EQ(ual) G(reater)T(han)
 -- implement a comparison for @Nat@s, returning an @Ordering@
@@ -235,6 +224,18 @@ maxNat = undefined
 -- GT
 compareNat :: Nat -> Nat -> Ordering
 compareNat = undefined
+
+-- TASK
+-- calculate the larger of two @Nat@s recursively
+-- EXAMPLES
+-- >>> maxNat (Succ Zero) Zero
+-- Succ Zero
+-- >>> maxNat (Succ (Succ Zero)) Zero
+-- Succ (Succ Zero)
+-- >>> maxNat (Succ (Succ Zero)) (Succ (Succ (Succ (Succ Zero))))
+-- Succ (Succ (Succ (Succ Zero)))
+maxNat :: Nat -> Nat -> Nat
+maxNat = undefined
 
 -- | README
 -- the "syntax" for a very basic "calculator" datatype
