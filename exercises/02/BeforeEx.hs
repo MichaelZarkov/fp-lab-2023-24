@@ -44,6 +44,13 @@ data Tuple a b
 sumTuple :: Tuple Int Int -> Int
 sumTuple = undefined
 
+-- TODO: implement, used in examples
+fstTuple :: Tuple a b -> a
+fstTuple = undefined
+
+sndTuple :: Tuple a b -> b
+sndTuple = undefined
+
 -- EXERCISE
 -- Take two arguments and return the first.
 -- This is called const because if we think of it as a function
@@ -115,7 +122,7 @@ uncurry = undefined
 -- > p `on` f
 -- Implement a combinator that allows you to "preapply" a function f on the arguments of a function p
 -- EXAMPLES
--- >>> let maxOnFirst = max `on` fstTuple in maxFirst (MkTuple 1 20) (MkTuple 2 100000)
+-- >>> let maxOnFirst = max `on` fstTuple in maxOnFirst (MkTuple 1 20) (MkTuple 2 100000)
 -- 2
 
 -- >>> let maxOnSum = max `on` sumTuple in maxOnSum (MkTuple 20 39) (MkTuple 12 34)
