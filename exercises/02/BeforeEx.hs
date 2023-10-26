@@ -120,7 +120,6 @@ uncurry = undefined
 
 -- >>> let maxOnSum = max `on` sumTuple in maxOnSum (MkTuple 20 39) (MkTuple 12 34)
 -- 59
--- You can look at the `fight` from the solutions from last time for good actual usage of the function
 on :: (b -> b -> c) -> (a -> b) -> a -> a -> c
 on = undefined
 
