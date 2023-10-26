@@ -23,6 +23,52 @@ import Prelude hiding (const, curry, id, log, on, swap, uncurry, until, ($))
 -- guards
 -- let
 -- where
+-- blaswap :: (Int, Char) -> (Char, Int)
+-- blaswap asdf@(x, y) =
+--  let f' = 11 * x
+--   in (let bla = y in bla, f + f')
+--  where
+--    f = x + 10
+andBool :: Bool -> Bool -> Bool
+andBool False _ = False
+andBool True False = False
+andBool True True = True
+
+-- \x y z -> x * y + z
+-- \x -> \y -> \z -> x * y + z
+
+applyTwice :: (a -> a) -> a -> a
+applyTwice f x = f $ f x
+
+-- logGeneral ::
+--  (String -> IO ()) ->
+--  String ->
+--  String ->
+--  IO ()
+-- logGeneral prnt lvl str =
+--  prnt (lvl ++ ":" ++ str)
+--
+-- logOut :: String -> String -> IO ()
+-- logOut lvl str = logGeneral putStrLn lvl str
+--
+-- logFile :: String -> String -> IO ()
+-- logFile lvl str = logGeneral (writeFile "asdf.txt") lvl str
+
+-- f x y z = x * y + z
+-- f = \x y z -> x * y + z
+
+-- mapmap f = map (map f)
+
+add5 :: Int -> Int
+add5 = (+) 5
+
+-- f :: a -> Int -> Char -> String
+-- x :: a
+-- f x :: Int -> Char -> String
+--
+-- (+) :: Int -> (Int -> Int)
+-- (+) 5 :: Int -> Int
+
 -- ?
 -- lambdas, desguar function def, HOF(arguments), log hof example, currying, polymorphism
 -- logging as example for DI via higher order functions
@@ -33,15 +79,25 @@ import Prelude hiding (const, curry, id, log, on, swap, uncurry, until, ($))
 -- applyTwice :: (a -> a) -> a -> a
 -- id
 -- ($) - maybe go back to solutions and start rewriting stuff using ($)?
--- infixr 0 $
+
+($) :: (a -> b) -> a -> b
+($) f x = f x
+
+infixr 0 $
+
+-- x + y + z + u
+
+-- f $ g $ y x
+
+-- 3 + (5 * 10) + 6
+
 todo :: todo
 todo = todo
 
--- TODO live
-data Tuple a b
+data Tuple a b = MkTuple a b
 
 sumTuple :: Tuple Int Int -> Int
-sumTuple = undefined
+sumTuple (MkTuple x y) = x + y
 
 -- EXERCISE
 -- Take two arguments and return the second.
