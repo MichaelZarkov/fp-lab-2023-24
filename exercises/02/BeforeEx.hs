@@ -103,8 +103,7 @@ curry :: (Tuple a b -> c) -> a -> b -> c
 curry = undefined
 
 -- EXERCISE
--- Convert a function operating on a tuple, to one that takes two arguments.
--- Called Curry after Haskell Curry - inventor of lambda calculus.
+-- Convert a two argument function, to one that takes a Tuple.
 -- EXAMPLES
 -- >>> uncurry (\x y -> x + y) $ MkTuple 23 46
 -- 69
