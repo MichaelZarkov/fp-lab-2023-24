@@ -95,6 +95,7 @@ todo :: todo
 todo = todo
 
 data Tuple a b = MkTuple a b
+  deriving (Show)
 
 sumTuple :: Tuple Int Int -> Int
 sumTuple (MkTuple x y) = x + y

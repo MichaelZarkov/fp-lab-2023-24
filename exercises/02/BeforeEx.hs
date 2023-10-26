@@ -39,6 +39,7 @@ todo = todo
 
 -- TODO live
 data Tuple a b
+  deriving (Show)
 
 sumTuple :: Tuple Int Int -> Int
 sumTuple = undefined
