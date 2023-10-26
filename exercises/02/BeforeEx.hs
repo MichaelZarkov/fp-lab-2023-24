@@ -171,6 +171,11 @@ data Nat
 -- expNat :: Nat -> Nat -> Nat
 -- expNat = undefined
 --
+-- Can you also implement
+-- natToInteger :: Nat -> Integer
+-- natToInteger = undefined
+-- using your function? If not, modify your function so you can.
+--
 -- Can you also implement the following "predecessor" function using it? Yes/no, and why?
 --
 -- predNat :: Nat -> Nat
