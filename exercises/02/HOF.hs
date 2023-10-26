@@ -100,7 +100,7 @@ sumTuple :: Tuple Int Int -> Int
 sumTuple (MkTuple x y) = x + y
 
 -- EXERCISE
--- Take two arguments and return the second.
+-- Take two arguments and return the first.
 -- This is called const because if we think of it as a function
 -- on one argument x, it returns a function that when called, always returns x
 -- It is also practically always used partially applied.

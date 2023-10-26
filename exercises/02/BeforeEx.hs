@@ -24,7 +24,7 @@ import Prelude hiding (const, curry, id, log, on, swap, uncurry, until, ($))
 -- let
 -- where
 -- ?
--- lambdas, desguar function def, HOF(arguments), log hof example, currying, polymorphism
+-- lambdas, desugar function def, HOF(arguments), log hof example, currying, polymorphism
 -- logging as example for DI via higher order functions
 -- ($)
 -- what does "combinator" mean?
@@ -44,7 +44,7 @@ sumTuple :: Tuple Int Int -> Int
 sumTuple = undefined
 
 -- EXERCISE
--- Take two arguments and return the second.
+-- Take two arguments and return the first.
 -- This is called const because if we think of it as a function
 -- on one argument x, it returns a function that when called, always returns x
 -- It is also practically always used partially applied.
