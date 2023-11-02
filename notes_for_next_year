@@ -2,9 +2,24 @@
 disable eta reduce hint before we talk about currying
 
 # first exercise
+note to students that they should submit hw as soon as possible
+
 mention `rem` or `even` in first exercise fastPow
 add examples to isEven, isOdd
 Use undefined instead of holes for tasks, works better
+
+# first hw
+note to students to not use helpers!
+note to students that they should not push in main
+note to students to use formatter
+
+-- remind not to push in main!!!!!!
+-- use a formatter pls
+-- don't always use helpers
+-- remind about doing PRs as early as possible to get feedback (demonstrate feedback)
+-- remind about new homework
+-- look at email
+
 
 # adts exercise
 
