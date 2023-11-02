@@ -12,7 +12,7 @@
 
 module ListMaybe where
 
-import Prelude hiding (all, and, concat, drop, filter, length, map, null, product, reverse, subtract, sum, take, zip, zipWith, (++))
+import Prelude hiding (all, and, concat, drop, filter, length, map, null, product, replicate, reverse, subtract, sum, take, zip, zipWith, (++))
 
 -- TODO:
 -- remind not to push in main!!!!!!
