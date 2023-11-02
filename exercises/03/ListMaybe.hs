@@ -22,8 +22,72 @@ import Prelude hiding (all, and, concat, drop, filter, length, map, null, produc
 -- remind about new homework
 -- look at email
 
+-- >>> :t f 3 "asdf" True
+-- f 3 "asdf" True :: Char
+-- >>> :t f 3
+-- f 3 :: String -> Bool -> Char
+-- f :: Int -> String -> Bool -> Char
+-- f = undefined
+
+-- ($) :: (a -> b) -> a -> b
+-- ($) f x = f x
+
+-- add10 :: Int -> Int
+-- add10 = (+) 10
+
+-- (.) :: (b -> c) -> (a -> b) -> (a -> c)
+-- add30 :: Int -> Int
+-- add30 = add10 . add10 . add10
+--
+-- g :: String -> Bool -> Char
+-- g = f 10
+
 -- revise currying
 -- remind ($), (.), types
+
+-- '(a b c)
+--
+-- a -> b -> c -> nil
+-- data Nat
+--  = Zero
+--  | Suc Nat
+
+-- xs :: [Int]
+-- xs = [1, 2, 3]
+
+-- { x | x \in A, p(x), .... }
+-- >>> [ (x, y) | x <- xs, y <- xs, x * 10 == y ]
+-- [(2,20),(3,30)]
+-- >>> [ (x, 2 * x) | x <- xs, even x ]
+-- [(2,20)]
+
+-- xs = (:) 1 ((:) 2 ((:) 3 []))
+-- xs = [1, 2, 3]
+
+-- empty :: [a]
+-- empty = []
+
+-- data [] a
+--   = []
+--   | (:) a [a]
+
+-- data List a
+--  = Nil
+--  | Cons a (List a)
+--  deriving (Show)
+--
+---- '(1 2 3)
+---- [1, 2, 3]
+-- xs :: List Int
+-- xs = Cons 1 $ Cons 2 $ Cons 3 Nil
+--
+---- >>> sumList xs
+---- 6
+---- >>> sumList (Cons 0 Nil)
+---- 0
+-- sumList :: List Int -> Int
+-- sumList Nil = 0
+-- sumList (Cons x xs) = x + sumList xs
 
 -- Lists
 -- ask linked list, explain what they are
@@ -35,6 +99,40 @@ import Prelude hiding (all, and, concat, drop, filter, length, map, null, produc
 -- cartesianProd with list comprehension?
 --
 -- brief mention of Strings and not using them
+
+-- "asdf"
+-- 'a' : 's' : 'd' : 'f' : []
+-- String == [Char]
+-- ~24 byte
+
+-- data Maybe a
+--   = Nothing
+--   | Just a
+data MyMaybe a
+  = MyNothing
+  | MyJust a
+
+safeDiv :: Integer -> Integer -> Maybe Integer
+safeDiv _ 0 = Nothing
+safeDiv x y = Just $ x `div` y
+
+headMaybe :: [a] -> Maybe a
+headMaybe [] = Nothing
+headMaybe (x : _) = Just x
+
+sumList :: [Int] -> Int
+sumList [] = 0
+sumList (x : xs) = x + sumList xs
+
+--- >>> head [1,2,3]
+-- 1
+--- >>> head []
+-- Prelude.head: empty list
+
+-- addMaybes :: Maybe Integer -> Maybe Integer -> Maybe Integer
+
+-- >>> even 5
+-- False
 
 -- Maybe
 -- explicit permission for a value to be missing
