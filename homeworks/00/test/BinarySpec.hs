@@ -26,7 +26,7 @@ succBinarySpec = describe "succBinary" do
     succBinary (End :. Zero) `shouldBe` End :. One
   it "works on One" do
     succBinary (End :. One) `shouldBe` End :. One :. Zero
-  it "works on 8" do
+  it "works on 7" do
     succBinary (End :. One :. One :. One) `shouldBe` End :. One :. Zero :. Zero :. Zero
 
 hasLeadingZeroSpec :: Spec
