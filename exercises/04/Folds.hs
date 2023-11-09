@@ -12,6 +12,7 @@
 {-# OPTIONS_GHC -fwarn-unused-matches #-}
 
 {-# HLINT ignore "Use foldr" #-}
+{-# HLINT ignore "Use map" #-}
 
 module Folds where
 
@@ -22,8 +23,15 @@ import Prelude hiding (all, and, concat, drop, filter, foldr, length, map, null,
 -- "automating recursion"
 
 -- show how we reached map
--- squareList
--- megaPair
+squareList :: [Integer] -> [Integer]
+squareList = map (\x -> x * x)
+
+megaPair :: a -> [b] -> [(a, b)]
+megaPair x = map (x,)
+
+map :: (a -> b) -> [a] -> [b]
+map _f [] = []
+map f (x : xs) = f x : map f xs
 
 -- "replacing constructors"
 -- TODO: implement foldNat, required
@@ -31,14 +39,47 @@ import Prelude hiding (all, and, concat, drop, filter, foldr, length, map, null,
 -- fold
 -- catamorphism
 
-data Nat
-  = Zero
-  | Suc Nat
-  deriving (Show)
-
+-- >>> integerToNat 5
+-- Succ $ Succ $ Succ $ Succ $ Succ Zero
 integerToNat :: Integer -> Nat
 integerToNat 0 = Zero
-integerToNat n = Suc $ integerToNat $ n - 1
+integerToNat n = Succ $ integerToNat $ n - 1
+
+-- addNat :: Nat -> Nat -> Nat
+-- addNat Zero m = m
+-- addNat (Succ n) m = f $ addNat n m
+--  where
+--    f = Succ
+--
+-- multNat :: Nat -> Nat -> Nat
+-- multNat Zero _ = Zero
+-- multNat (Succ n) m = f $ multNat n m
+--  where
+--    f = addNat m
+
+-- natToInteger Zero = 0
+-- natToInteger (Succ n) = succ $ natToInteger n
+--natToInteger :: Nat -> Integer
+--natToInteger n = foldNat 0 (1+) n
+
+-- foldNat nv f 3
+-- foldNat nv f (Succ (Succ (Succ Zero)))
+-- f $ foldNat nv f (Succ (Succ Zero))
+-- f $ f $ foldNat nv f (Succ Zero)
+-- f $ f $ f $ foldNat nv f Zero
+-- f $ f $ f $ nv
+-- Succ (Succ (Succ Zero))
+-- f    (f    (f    nv))
+
+addNat :: Nat -> Nat -> Nat
+addNat n m = foldNat m Succ n
+
+multNat :: Nat -> Nat -> Nat
+multNat n m = foldNat Zero (addNat m) n
+
+-- n == 3
+-- Succ     $ Succ     $ Succ     Zero
+-- addNat m $ addNat m $ addNat m Zero
 
 -- do some reductions?
 
@@ -48,6 +89,59 @@ integerToNat n = Suc $ integerToNat $ n - 1
 
 -- do some reductions?
 
+data Nat
+  = Zero
+  | Succ Nat
+  deriving (Show)
+
+foldNat :: a -> (a -> a) -> Nat -> a
+foldNat nv _ Zero = nv
+foldNat nv f (Succ n) = f $ foldNat nv f n
+
+myAnd :: [Bool] -> Bool
+myAnd [] = True
+myAnd (x:xs) = x && myAnd xs
+
+myOr :: [Bool] -> Bool
+myOr [] = False
+myOr (x:xs) = x || myAnd xs
+
+-- data [] a
+--  = []
+--  | (:) a [a]
+
+
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f nv [] = nv
+foldr f nv (x:xs) = f x (foldr f nv xs)
+
+-- foldr f nv [1,2,3]
+-- foldr f nv (1 : 2 : 3 : [])
+-- f 1 (foldr f nv (2 : 3 : []))
+-- f 1 (f 2 (foldr f nv (3 : []))
+-- f 1 (f 2 (f 3 (foldr f nv [])))
+
+-- 1 :   2 :   3 :   []
+-- 1 `f` 2 `f` 3 `f` nv
+
+-- f 1 (f 2 (f 3 nv))
+
+
+
+
+
+
+
+
+
+
+sum :: [Integer] -> Integer
+sum xs = foldr (+) 0 xs
+
+(++) :: [a] -> [a] -> [a]
+(++) xs ys = foldr (:) ys xs
+
+
 -- reach foldr
 -- TODO: implement foldr, required
 -- sum, product, append
@@ -56,7 +150,7 @@ integerToNat n = Suc $ integerToNat $ n - 1
 -- EXERCISE
 -- Implement natToInteger using foldNat.
 -- EXAMPLES
--- >>> natToInteger $ Suc $ Suc $ Suc Zero
+-- >>> natToInteger $ Succ $ Succ $ Succ Zero
 -- 3
 natToInteger :: Nat -> Integer
 natToInteger = undefined
@@ -135,8 +229,8 @@ reverse = undefined
 -- [1,4,9]
 -- >>> map (\x -> (3,x)) [1,2,3] -- same as megaPair 3
 -- [(3,1),(3,2),(3,3)]
-map :: (a -> b) -> [a] -> [b]
-map = undefined
+mapfoldr :: (a -> b) -> [a] -> [b]
+mapfoldr = undefined
 
 -- EXERCISE
 -- Implement filter using foldr
@@ -266,7 +360,7 @@ validateList = undefined
 --
 -- EXAMPLES
 -- >>> iterateToNat (\f x -> f (f (f x)))
--- Suc (Suc (Suc Zero))
+-- Succ (Succ (Succ Zero))
 iterateToNat :: (forall a. (a -> a) -> a -> a) -> Nat
 iterateToNat _f = undefined
 
@@ -311,7 +405,7 @@ zero _f v = v
 -- >>> iterateToNat zero
 -- Zero
 -- >>> iterateToNat $ suc $ suc zero
--- Suc (Suc Zero)
+-- Succ (Succ Zero)
 -- >>> natToInteger $ iterateToNat $ suc $ natToIterate $ integerToNat 5
 -- 6
 suc :: Natural -> Natural
@@ -321,9 +415,9 @@ suc _n = undefined
 -- We can also add these. Here we need to think about how to add f n times to another Natural.
 -- EXAMPLES
 -- >>> iterateToNat $ add (suc (suc zero)) zero
--- Suc (Suc Zero)
+-- Succ (Succ Zero)
 -- >>> iterateToNat $ add (suc (suc zero)) (suc (suc (suc zero)))
--- Suc (Suc (Suc (Suc (Suc Zero))))
+-- Succ (Succ (Succ (Succ (Succ Zero))))
 -- >>> natToInteger $ iterateToNat $ add (suc (suc zero)) (suc (suc (suc (suc zero))))
 -- 6
 add :: Natural -> Natural -> Natural
@@ -336,7 +430,7 @@ add _n _m = undefined
 -- >>> iterateToNat $ mult zero (suc (suc zero))
 -- Zero
 -- >>> iterateToNat $ mult (suc (suc zero)) (suc (suc zero))
--- Suc (Suc (Suc (Suc Zero)))
+-- Succ (Succ (Succ (Succ Zero)))
 -- >>> natToInteger $ iterateToNat $ mult (suc (suc zero)) (suc (suc (suc zero)))
 -- 6
 mult :: Natural -> Natural -> Natural
