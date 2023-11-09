@@ -59,8 +59,8 @@ integerToNat n = Succ $ integerToNat $ n - 1
 
 -- natToInteger Zero = 0
 -- natToInteger (Succ n) = succ $ natToInteger n
---natToInteger :: Nat -> Integer
---natToInteger n = foldNat 0 (1+) n
+-- natToInteger :: Nat -> Integer
+-- natToInteger n = foldNat 0 (1+) n
 
 -- foldNat nv f 3
 -- foldNat nv f (Succ (Succ (Succ Zero)))
@@ -100,20 +100,19 @@ foldNat nv f (Succ n) = f $ foldNat nv f n
 
 myAnd :: [Bool] -> Bool
 myAnd [] = True
-myAnd (x:xs) = x && myAnd xs
+myAnd (x : xs) = x && myAnd xs
 
 myOr :: [Bool] -> Bool
 myOr [] = False
-myOr (x:xs) = x || myAnd xs
+myOr (x : xs) = x || myAnd xs
 
 -- data [] a
 --  = []
 --  | (:) a [a]
 
-
 foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f nv [] = nv
-foldr f nv (x:xs) = f x (foldr f nv xs)
+foldr f nv (x : xs) = f x (foldr f nv xs)
 
 -- foldr f nv [1,2,3]
 -- foldr f nv (1 : 2 : 3 : [])
@@ -126,21 +125,8 @@ foldr f nv (x:xs) = f x (foldr f nv xs)
 
 -- f 1 (f 2 (f 3 nv))
 
-
-
-
-
-
-
-
-
-
 sum :: [Integer] -> Integer
 sum xs = foldr (+) 0 xs
-
-(++) :: [a] -> [a] -> [a]
-(++) xs ys = foldr (:) ys xs
-
 
 -- reach foldr
 -- TODO: implement foldr, required
