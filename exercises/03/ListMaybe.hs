@@ -501,7 +501,7 @@ parseNumber = undefined
 -- EXERCISE
 -- Notice how in parseNumber, in the Nothing case we returned Nothing,
 -- and in the Just case, we returned Just again, with a "non-maybe" function inside.
--- This turns out to be very useful, and if you compare it to the map for lists, it's almost the same.
+-- This turns out to be very useful, and if you compare it to the @map@ for lists, it's almost the same.
 -- Let's write it now, so we don't have to do that pattern match again in the future.
 -- Afterwards, you can reuse this function in parseNumber.
 -- EXAMPLES
