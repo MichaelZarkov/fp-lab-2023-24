@@ -210,8 +210,9 @@ validateList :: [Maybe a] -> Maybe [a]
 validateList = undefined
 
 -- EXERCISE
--- Look at the recursor for nats - foldNat. In there we replaced Nats constructors, with things.
--- Think about how a recursor for tuples should look like, and implement it.
+-- Look at the recursor for nats - foldNat. In there we replaced @Nat@'s constructors with "things".
+-- Think about how a fold for tuples should look like, and implement it.
+-- Does this function remind you of another function we've previously implemented?
 -- foldTuple :: ?
 -- foldTuple = undefined
 
