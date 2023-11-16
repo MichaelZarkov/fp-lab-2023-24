@@ -112,7 +112,7 @@ traverseListMaybe = undefined
 -- EXERCISE
 -- Convert a list of digits to a number.
 --
--- You can use @toEnum :: Digit -> Int@ to convert digit into an @Int@
+-- You can use @fromEnum :: Digit -> Int@ to convert digit into an @Int@
 -- and @fromIntegral :: Int -> Integer@ to convert an @Int@ into an @Integer@
 --
 -- Assume that the empty list converts to 0.
