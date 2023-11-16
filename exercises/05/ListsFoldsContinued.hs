@@ -15,9 +15,11 @@
 -- use all your pattern matches!
 {-# OPTIONS_GHC -fwarn-unused-matches #-}
 
+{-# HLINT ignore "Use foldl" #-}
+
 module ListsFoldsContinued where
 
-import Prelude hiding (reverse, zip, zipWith)
+import Prelude hiding (foldl, reverse, zip, zipWith)
 
 -- homework: stop using thrice! longer deadline
 -- folds as mirrored to constructors
@@ -26,6 +28,35 @@ import Prelude hiding (reverse, zip, zipWith)
 -- minusFrom :: Integer -> [Integer] -> Integer
 -- lastMaybe :: [a] -> Maybe a
 -- tailrec
+
+-- for foldr - (a -> b -> b)
+foldl ::
+  (b -> a -> b) ->
+  b ->
+  [a] ->
+  b
+foldl _ acc [] = acc
+foldl f acc (x : xs) = foldl f (f acc x) xs
+
+-- >>> minusFrom 15 [1..5]
+-- 0
+minusFrom :: Integer -> [Integer] -> Integer
+minusFrom n xs = foldl (-) n xs
+
+lastMaybe :: [a] -> Maybe a
+lastMaybe xs = foldl go acc xs
+  where
+    go (Just x) _ = Just x
+    go Nothing y = Just y
+    acc = Nothing
+
+-- lastMaybe [] = Nothing
+-- lastMaybe [x] = Just x
+-- lastMaybe (_ : xs) = lastMaybe xs
+
+-- 1 - (2 - (3 - (4 - 5)))
+
+-- n - x1 - x2 - x3
 
 safeDiv :: Integer -> Integer -> Maybe Integer
 safeDiv _ 0 = Nothing
