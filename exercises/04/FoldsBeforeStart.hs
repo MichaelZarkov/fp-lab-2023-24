@@ -276,17 +276,6 @@ iterateToNat _f = undefined
 natToIterate :: Nat -> (a -> a) -> a -> a
 natToIterate = undefined
 
--- EXERCISE
--- Figure out how to extend foldNat so you can easily write factorial over nats.
--- You need some extra info at each step - what is it?
--- foldNat' :: _
--- foldNat' = undefined
-
--- EXERICSE
--- And then implement factorial using it.
-fact :: Nat -> Nat
-fact = undefined
-
 type Natural = forall a. (a -> a) -> a -> a
 
 -- EXERCISE
