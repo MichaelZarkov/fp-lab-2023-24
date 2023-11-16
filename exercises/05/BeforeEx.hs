@@ -1,6 +1,7 @@
 {-# HLINT ignore "Use foldr" #-}
 {-# HLINT ignore "Use map" #-}
 {-# HLINT ignore "Unused LANGUAGE pragma" #-}
+{-# HLINT ignore "Use foldl" #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE RankNTypes #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
@@ -17,7 +18,7 @@
 
 module ListsFoldsContinued where
 
-import Prelude hiding (reverse, zip, zipWith)
+import Prelude hiding (foldl, reverse, zip, zipWith)
 
 -- homework: stop using thrice! longer deadline
 -- folds as mirrored to constructors
