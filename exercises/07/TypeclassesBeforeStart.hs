@@ -188,6 +188,11 @@ newtype First a = MkFirst {getFirst :: Maybe a}
 -- instance Monoid (First a) where
 
 -- | EXERCISE
+-- Utility function converting a predicate to a Maybe returning function.
+guarded :: (a -> Bool) -> a -> Maybe a
+guarded = undefined
+
+-- | EXERCISE
 -- Now implement the find function by using First and foldMap
 find :: (a -> Bool) -> [a] -> Maybe a
 find = undefined
@@ -253,11 +258,6 @@ reverse = undefined
 -- [1,1,2,3,4,12,34]
 -- sort :: _ => [a] -> [a]
 -- sort = undefined
-
--- | EXERCISE
--- Utility function converting a predicate to a Maybe returning function.
-guarded :: (a -> Bool) -> a -> Maybe a
-guarded = undefined
 
 -- | EXERCISE
 -- Now use First, foldMap, the monoid for tuples and Dual to implement a function which works like find
