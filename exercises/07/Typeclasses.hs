@@ -13,6 +13,85 @@ module Typeclasses where
 
 import Prelude hiding (Monoid (..), Semigroup (..), all, any, find, fold, foldMap, lookup, mconcat, mtimes, reverse)
 
+-- Eq
+-- (==)
+
+-- sortInt :: [Int] -> [Int]
+-- sortInt = undefined
+
+-- showMatrix :: (a -> String) -> Matrix a -> String
+-- showMatrix = undefined
+
+-- sort :: (a -> a -> Bool) -> [a] -> [a]
+-- sort leq xs = undefined
+
+-- class MyEq a where
+--  (==) :: a -> a -> Bool
+--
+-- instance MyEq Bool where
+--  (==) :: Bool -> Bool -> Bool
+--  (==) True True = True
+--  (==) False False = True
+--  (==) _ _ = False
+--
+-- class (MyEq a) => Orderable a where
+--  leq :: a -> a -> Bool
+--  leq x y =
+--    case myCompare x y of
+--      LT -> True
+--      EQ -> True
+--      GT -> False
+--
+--  myCompare :: a -> a -> Ordering
+--  myCompare x y =
+--    if x `leq` y
+--      then
+--        if y `leq` x
+--          then EQ
+--          else LT
+--      else GT
+--
+---- False < True
+-- instance Orderable Bool where
+--  leq True False = False
+--  leq _ _ = True
+--
+---- data Oredering = LT | EQ | GT
+--
+-- sort :: (Orderable a) => [a] -> [a]
+-- sort = undefined
+
+-- If you implement this
+-- make sure
+-- class Eq a where
+--   (==) :: a -> a -> Bool
+
+-- Dog == Cat
+-- Cat /= Dog
+
+-- class Ord a where
+--   (<=) :: a -> a -> Bool
+--   compare :: a -> a -> Ordering
+
+-- class Show a where
+--   show :: a -> String
+
+-- class Read a where
+--   read :: String -> a
+
+-- readMay :: String -> Maybe a
+
+-- class Enum a where
+--   succ :: a -> a
+
+-- class Num a where
+--
+
+data Animal
+  = Dog Integer
+  | Cat
+  deriving (Show, Read, Eq, Ord)
+
 -- motivation: lookup, sort, insert
 -- type*classes* - "sets of types" sometimes useful
 -- MyEq
@@ -43,9 +122,11 @@ import Prelude hiding (Monoid (..), Semigroup (..), all, any, find, fold, foldMa
 -- both can have dict/vtable for impl, both
 -- typeclasses usually have laws
 
+-- 1. assoc -> (x <> y) <> z == x <> (y <> z)
 class Semigroup a where
   (<>) :: a -> a -> a
 
+-- 2. mempty <> x == x == x <> mempty
 class (Semigroup a) => Monoid a where
   mempty :: a
 
