@@ -140,6 +140,7 @@ mtimes = undefined
 
 -- | EXERCISE
 -- Combine a list of elements, assuming that the type in the list is a Monoid
+-- Try implementing this using foldr
 -- EXAMPLES
 -- >>> fold [Zero, Suc Zero, Suc (Suc Zero)]
 -- Suc (Suc (Suc Zero))
@@ -159,7 +160,8 @@ foldMapMaybe :: (Monoid b) => (a -> b) -> Maybe a -> b
 foldMapMaybe = undefined
 
 -- | EXERCISE
--- Fold a list using a mapping function. Try implementing this with foldr.
+-- Fold a list using a mapping function.
+-- Try implementing this with fold and map.
 -- ** Extremely** useful function.
 foldMap :: (Monoid b) => (a -> b) -> [a] -> b
 foldMap = undefined
