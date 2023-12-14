@@ -54,7 +54,7 @@ getNumber :: IO Integer
 getNumber = undefined
 
 -- | EXERCISE
--- Implement reading an @Bool@ from stdin.
+-- Implement reading a @Bool@ from stdin.
 getBool :: IO Bool
 getBool = undefined
 
