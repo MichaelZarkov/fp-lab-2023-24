@@ -79,6 +79,11 @@ whenNothing = undefined
 -- readLn = undefined
 
 -- | EXERCISE
+-- Same as @readLn@, but don't error out, returning a @Maybe@ instead.
+-- readLnMay :: ??
+-- readLnMay = undefined
+
+-- | EXERCISE
 -- Run an IO action only when the given @Bool@ is @True 2
 when :: Bool -> IO () -> IO ()
 when = undefined
