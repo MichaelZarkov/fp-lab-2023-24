@@ -14,8 +14,40 @@ module IO where
 import Text.Read (readMaybe)
 import Prelude hiding (getLine, putStrLn, readLn)
 
--- | building blocks:
+-- |
+-- building blocks:
 -- @do@ and @pure@
+-- [x | x <- xs]
+
+-- IO a
+-- "действие, което когато го пуснем
+-- ще произведе a"
+
+mockString :: IO String
+mockString = pure "pesho"
+
+-- data () = ()
+f :: IO ()
+f = do
+  x <- mockString
+  putStrLn x
+  getLine :: IO String
+  putStrLn x
+  putStrLn x
+  putStrLn x
+
+-- pure :: a -> IO a
+
+-- World -> (World, a)
+
+-- pure :: a -> World -> (World, a)
+-- pure x currWorld = (currWorld, x)
+
+-- data IO a
+-- pure :: a -> IO a
+
+-- pure :: a -> Maybe a
+
 -- reminder about()
 -- getChar, putChar
 --
@@ -34,11 +66,34 @@ import Prelude hiding (getLine, putStrLn, readLn)
 todo :: todo
 todo = todo
 
-putStrLn :: String -> IO ()
-putStrLn = undefined
+get2Char :: IO (Char, Char)
+get2Char = do
+  (x :: Char) <- (getChar :: IO Char)
+  y <- getChar
+  -- pure :: a -> IO a
+  pure ((x, y) :: (Char, Char)) ::
+    IO (Char, Char)
 
 getLine :: IO String
-getLine = undefined
+getLine = do
+  x <- getChar
+  if x == '\n'
+    then pure []
+    else do
+      xs <- getLine
+      pure $ x : xs
+
+-- putChar :: Char -> IO ()
+putStrLn :: String -> IO ()
+putStrLn [] = putChar '\n'
+putStrLn (x : xs) = do
+  putChar x
+  putStrLn xs
+
+-- error :: String -> a
+
+-- writeFile :: String -> String -> IO ()
+-- readFile :: String -> IO String
 
 -- Use @error :: String -> a@ when you need to error out.
 
