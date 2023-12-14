@@ -104,6 +104,9 @@ untilJustM = undefined
 -- uses that number as an index into the dictionary to pick a word for the game hangman.
 -- If the user errors a number which is outside that range, we should prompt them again (@untilJustM@ is useful here)
 --
+-- You can use @lines :: String -> [String]@ to split up the dictionary.
+-- You can use @(!!) :: [a] -> Int -> a@ to index the dictionary.
+--
 --
 -- The @playHangman guessedSoFar target@ function is the actual "gameplay" we're going to implement.
 -- In it, we keep an argument @guessedSoFar@ as "state" for the letters we've guessed so far,
