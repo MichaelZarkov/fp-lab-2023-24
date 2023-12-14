@@ -178,3 +178,12 @@ readInLists' = undefined
 -- EXERCISE:
 -- Extend the hangman game to support a turn limit.
 -- If the player wants to win, they must guess the word before the turn limit.
+
+-- EXERCISE:
+-- Extend the hangman game so it supports entering either a letter, or a word,
+-- closer to the actual game of hangman.
+-- You can choose whatever format you like for the input, for example it could be a prefix
+-- indicating what was entered, e.g.
+-- w:<some word here> and c:<some char here>
+-- or
+-- guess:<some word here> and <char>
