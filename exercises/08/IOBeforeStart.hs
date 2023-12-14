@@ -29,8 +29,9 @@ import Prelude hiding (getLine, putStrLn, readLn)
 --
 -- readFile, writeFile
 --
--- readFile :: String -> IO String
--- writeFile :: String -> IO ()
+-- type FilePath = String
+-- readFile :: FilePath -> IO String
+-- writeFile :: FilePath -> String -> IO ()
 todo :: todo
 todo = todo
 
