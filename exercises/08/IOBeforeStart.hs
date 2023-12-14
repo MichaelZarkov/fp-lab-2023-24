@@ -23,6 +23,7 @@ import Prelude hiding (getLine, putStrLn, readLn)
 -- putChar :: Char -> IO ()
 --
 -- implement putStrLn
+-- implement get2Char
 -- implement getLine
 --
 -- @error@
@@ -37,6 +38,9 @@ todo = todo
 
 putStrLn :: String -> IO ()
 putStrLn = undefined
+
+get2Char :: IO (Char, Char)
+get2Char = undefined
 
 getLine :: IO String
 getLine = undefined
