@@ -75,8 +75,8 @@ whenNothing = undefined
 -- Note that sometimes when using this function you'll need to specify a type annotation,
 -- because the compiler will not be able to figure out what exactly type you want to read.
 -- e.g. @x <- readLn :: IO Int@ to read an @Int@, or similarly you could do @x :: Int <- readLn@
-readLn :: (Read a) => IO a
-readLn = undefined
+-- readLn :: ??
+-- readLn = undefined
 
 -- | EXERCISE
 -- Run an IO action only when the given @Bool@ is @True 2
