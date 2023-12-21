@@ -165,7 +165,7 @@ replicateIO = undefined
 
 -- | EXERCISE
 -- For each number in a list, read in that many strings from stdin, returning them in a list of lists.
-readInLists :: [Int] -> [[String]]
+readInLists :: [Int] -> IO [[String]]
 readInLists = undefined
 
 -- | EXERCISE
@@ -175,7 +175,7 @@ traverseListIO = undefined
 
 -- | EXERCISE
 -- Implement @readInLists@ using @traverseListIO@
-readInLists' :: [Int] -> [[String]]
+readInLists' :: [Int] -> IO [[String]]
 readInLists' = undefined
 
 -- EXERCISE:
