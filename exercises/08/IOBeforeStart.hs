@@ -140,7 +140,7 @@ lift2IO = undefined
 
 -- | EXERCISE
 -- Read two numbers and sum them using using @lift2IO@
-sumTwo :: IO ()
+sumTwo :: IO Integer
 sumTwo = undefined
 
 -- | EXERCISE
