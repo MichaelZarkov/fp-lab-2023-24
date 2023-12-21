@@ -117,7 +117,7 @@ untilJustM = undefined
 -- 1. Ask the player to make a guess for what the word is
 -- 2. If the player guesses the word, we terminate the game and print a cheerful message
 -- 3. Otherwise, we continue playing the game, extending the list of guessed letters.
-startHangman :: String -> IO ()
+startHangman :: FilePath -> IO ()
 startHangman = undefined
 
 playHangman :: [Char] -> String -> IO ()
