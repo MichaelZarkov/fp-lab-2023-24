@@ -1,3 +1,5 @@
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE NoFieldSelectors #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 -- cover all cases!
 {-# OPTIONS_GHC -fwarn-incomplete-patterns #-}
@@ -52,18 +54,117 @@ import Prelude hiding ((<$>))
 -- some :: Parser a -> Parser [a]
 --    same as many, but some requires that the given parser succeed at least once, i.e. the result list is always non empty
 
+-- many :: Parser a -> Parser [a]
+-- some :: Parser a -> Parser [a]
+
 -- IMPLEMENT
+-- Parser a
 char :: Char -> Parser Char
 char c = do
-  -- "asdf"
   x <- nom
-  -- "sdf"
+
   if x == c
-    then pure x
+    then pure x :: Parser Char
     else parseFailure
+
+-- pure :: a -> Parser a
+
+twoA :: Parser (Char, Char)
+twoA = do
+  x <- char 'a'
+  y <- char 'a'
+  pure (x, y)
+
+aAndB :: Parser (Char, Char)
+aAndB = do
+  x <- char 'a'
+  y <- char 'b'
+  pure (x, y)
 
 aOrB :: Parser Char
 aOrB = char 'a' <|> char 'b'
+
+-- <type> <funName>(<args>)
+-- <funName> - a..z ++ A..Z
+-- <type> := int char
+-- <args> := [<type> <name>]
+--
+-- int foo(char bar, int qux)
+
+newtype CName = MkCName String
+  deriving (Show, Eq)
+
+data CFunDecl = MkCFunDecl
+  { ctype :: CType,
+    name :: CName,
+    args :: [CArg]
+  }
+  deriving (Show, Eq)
+
+data CArg = MkCArg
+  { ctype :: CType,
+    name :: CName
+  }
+  deriving (Show, Eq)
+
+-- int foo(char bar, int qux)
+-- char bar
+-- int qux
+-- (<*)
+myOp :: Parser a -> Parser b -> Parser a
+myOp px py = do
+  res <- px
+  py
+  pure res
+
+cFunDecl :: Parser CFunDecl
+cFunDecl = do
+  myType <- ctype -- "int"
+  eatSpace -- " "
+  funName <- cname -- "foo"
+  char '(' -- "("
+  funArgs <- sepBy carg (char ',' <* eatSpace)
+  -- "char bar, int qux"
+  char ')' -- ")"
+  pure
+    MkCFunDecl
+      { ctype = myType,
+        name = funName,
+        args = funArgs
+      }
+
+-- some :: Parser a -> Parser [a]
+cname :: Parser CName
+cname = do
+  res <- some $ satisfy (`elem` validChars)
+  pure $ MkCName res
+  where
+    validChars = ['A' .. 'Z'] ++ ['a' .. 'z']
+
+carg :: Parser CArg
+carg = do
+  argType <- ctype
+  char ' '
+  eatSpace
+  argName <- cname
+  pure
+    MkCArg
+      { ctype = argType,
+        name = argName
+      }
+
+data CType = CInt | CChar
+  deriving (Show, Eq)
+
+ctype :: Parser CType
+ctype = cint <|> cchar
+  where
+    cint = do
+      string "int"
+      pure CInt
+    cchar = do
+      string "char"
+      pure CChar
 
 -- IMPLEMENT
 parseTwoChars' :: Parser (Char, Char)
@@ -128,7 +229,11 @@ parseAnimal = do
 -- >>> parse (satisfy isDigit) "a"
 -- Nothing
 satisfy :: (Char -> Bool) -> Parser Char
-satisfy = undefined
+satisfy p = do
+  x <- nom
+  if p x
+    then pure x
+    else parseFailure
 
 -- EXERCISE
 -- Lift a function to work over the result of two parsers
@@ -183,8 +288,15 @@ numberParser = undefined
 
 -- EXERCISE
 -- Parse a lot of as seperated by bs
+-- char 'a'
+-- char ','
+-- a,a,a,a,a,a,a,a,a,
 sepBy :: Parser a -> Parser sep -> Parser [a]
-sepBy = undefined
+sepBy px psep =
+  many $ do
+    x <- px
+    optional psep
+    pure x
 
 -- EXERCISE
 -- parse as many as possible from the first parser, then parse as many things with the second parser, as you did with the first
@@ -234,7 +346,9 @@ sExpParser = undefined
 -- You can use isSpace to detect what a space is.
 -- This parser should always succeed, since even 0 spaces are "as many as possible".
 eatSpace :: Parser ()
-eatSpace = undefined
+eatSpace = do
+  many $ char ' '
+  pure ()
 
 -- EXERCISE
 -- Parse a list of SExprs. As this description implies
@@ -308,7 +422,11 @@ data Value
 -- >>> parse (string "kami") "kamipaper"
 -- Just "kami"
 string :: String -> Parser String
-string = undefined
+string [] = pure []
+string (c : cs) = do
+  c' <- char c
+  cs' <- string cs
+  pure $ c' : cs'
 
 -- EXERCISE: Null parser
 -- EXAMPLES:
