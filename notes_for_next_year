@@ -1,5 +1,28 @@
 # global
+
+fix can flag for first homework
+switch to boolean flag inside the program maybe?
+
+increase points for partialEval? seems to be hard for people
+
+make package names consistent in homeworks
+
+drop bonus from second homework or improve it?
+
+copy pretty output of cabal test to all the homeworks
+
+warn students that homework will not be graded if they don't use the file template?
+
+change deadlines to instead be "you'll only receive feedback before this deadline"?
+
+
+snake fury? not sure why I left this note
+
+add cabal config to produce pretty output on stdout with cabal test to all homeworks
+
 disable eta reduce hint before we talk about currying
+
+hspec output for GHA - https://github.com/MercuryTechnologies/hspec-formatter-github
 
 # first exercise
 note to students that they should submit hw as soon as possible
@@ -20,6 +43,23 @@ note to students to use formatter
 -- remind about new homework
 -- look at email
 
+# second hw
+remove commented out matrix code at the end of the file
+add tests for diagonalMatrix
+
+```
+src/Matrix.hs
+76:-- TODO add example board for students to implement
+99:-- TODO: mention "for all indices" interpretation
+103:-- TODO: mention "for all indices" interpretation
+141:-- TODO ask to reimplement better
+150:-- TODO: bonus, make em figure it out
+
+tasks/Matrix.md
+16:TODO: more examples???
+141:TODO: give example for Matrix - people think you can only use thrice/matrix
+```
+
 
 # adts exercise
 
@@ -39,6 +79,15 @@ look at 02/Solutions.hs from 2022-23 for MatchCArdSuitsResult
 add decent example for on?
 
 
+# listmaybe exercise
+add safeDiv as defintion
+explain pattern matching on list literals
+disable foldr and foldl hints
+
+
+
+# lazy
+consider making jos problem use list of lists instead - it's less convenient, but maybe easier to follow?
 
 
 have a notes database with explanations and examples of good code practices, e.g. newtyping, records, parse don't validate
@@ -48,6 +97,12 @@ have feedback forms after every(?) exercise - try to make them concise and quick
 
 
 think about how to fit in "best practices" sort of deal for projects
+
+
+# parser
+
+implement sepBy live?
+implement parsing a C function decl live?
 
 
 
